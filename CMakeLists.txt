@@ -11,4 +11,19 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(nsh
     src/main.cpp
+    src/parser.cpp
+)
+
+add_executable(parser_test
+    tests/parser_test.cpp
+    src/parser.cpp
+)
+
+target_include_directories(parser_test PRIVATE
+    include
+)
+
+target_include_directories(nsh PRIVATE
+    include
+
 )
