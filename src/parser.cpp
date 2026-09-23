@@ -1,9 +1,5 @@
 #include "parser.hpp"
 
-// remove this comment later.
-// this separates input into individual parts.
-// "ls -la" -> "ls", "-la"
-
 std::vector<std::string> tokenize(const std::string& input)
 {
     std::string current_args;

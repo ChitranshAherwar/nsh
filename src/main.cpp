@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "parser.hpp"
+ #include "executor.hpp"
 
 int main()
 {
@@ -14,14 +15,9 @@ int main()
         std::cout << "nsh> ";
         std::getline(std::cin, input);
 
-        std::cout << "You entered: " << input << '\n';
-
         std::vector<std::string> args = tokenize(input);
-
-        for (const auto& arg : args)
-        {
-            std::cout << arg << ' ';
-        }
+        execute(args);
+        
         std::cout << '\n';
 
     }
