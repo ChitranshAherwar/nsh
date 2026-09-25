@@ -9,6 +9,7 @@ A small Unix shell written in C++ from scratch.
 - Interactive command input
 - Command argument parsing
 - External command execution
+- `exit` builtin
 
 ## Build
 

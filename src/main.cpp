@@ -16,6 +16,13 @@ int main()
         std::getline(std::cin, input);
 
         std::vector<std::string> args = tokenize(input);
+
+            if(args.empty())
+            continue;
+
+            if(args[0] == "exit")
+            break;
+
         execute(args);
         
         std::cout << '\n';
