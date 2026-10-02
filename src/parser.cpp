@@ -30,5 +30,9 @@ std::vector<std::string> tokenize(const std::string& input)
             args.push_back(current_args);
         }
 
+        // if (!args.empty() && args[0] == "cd")
+        // {
+        //     args.erase(args.begin());
+        // }
     return args;
 }
