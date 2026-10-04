@@ -9,7 +9,7 @@ int execute(const std::vector<std::string>& args)
     std::vector<std::string> mutable_args = args;
     std::vector<char*> argv;
 
-    for (auto& arg : mutable_args)
+    for(auto& arg : mutable_args)
     {
         argv.push_back(arg.data());
     }
@@ -18,19 +18,19 @@ int execute(const std::vector<std::string>& args)
 
     pid_t pid = fork();
 
-    if (pid == 0)
+    if(pid == 0)
     {
         execvp(argv[0], argv.data());
         std::cerr << "nsh: unknown command: " << argv[0] << '\n';
 
         _exit(1); // return 1; continues child process.
     }
-    else if (pid > 0)
+    else if(pid > 0)
     {
         int status;
         waitpid(pid, &status, 0);
         
-        if (WIFEXITED(status))
+        if(WIFEXITED(status))
         {
             WEXITSTATUS(status);
         }

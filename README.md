@@ -1,8 +1,10 @@
 # nsh — Nyx Shell
 
-A small Unix shell written in C++ from scratch.
+nsh started with a simple question: what actually happens between typing a command and seeing a program run? Rather than treating the shell as another layer of the system to take for granted, I decided to build one from scratch in C++ and learn by pulling that layer apart piece by piece.
 
-> ⚠️ **Early development:** `nsh` is currently in an early stage of development. The shell runs until interrupted with `Ctrl+C` or the `exit` builtin is used.
+What began as a small experiment has grown into a working shell with command parsing, external process execution, and builtins such as `cd` and `exit`, with tests and documentation evolving alongside it.
+
+nsh is still deliberately far from a full-featured shell, and that's the point. The project will keep growing as I understand more about Unix processes, system interfaces, and the machinery underneath everyday command-line tools. There is no fixed finish line; as long as there is something interesting hiding behind the prompt, nsh has somewhere left to go.
 
 ## Current Functionality
 

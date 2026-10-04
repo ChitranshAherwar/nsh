@@ -6,13 +6,13 @@ std::vector<std::string> tokenize(const std::string& input)
     std::vector<std::string> args;
 
 
-    for (int i = 0; i < input.size(); i++)
+    for(int i = 0; i < input.size(); i++)
         {
 
-            if (input[i] == ' ')
+            if(input[i] == ' ')
             {
 
-                if (!current_args.empty())
+                if(!current_args.empty())
                 {
                     args.push_back(current_args);
                 }
@@ -29,10 +29,5 @@ std::vector<std::string> tokenize(const std::string& input)
         {
             args.push_back(current_args);
         }
-
-        // if (!args.empty() && args[0] == "cd")
-        // {
-        //     args.erase(args.begin());
-        // }
     return args;
 }

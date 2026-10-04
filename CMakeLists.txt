@@ -5,6 +5,8 @@ project(nsh
     LANGUAGES CXX
 )
 
+enable_testing()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -39,3 +41,6 @@ target_include_directories(nsh PRIVATE
     include
 
 )
+
+add_test(NAME parser_test COMMAND parser_test)
+add_test(NAME executor_test COMMAND executor_test)

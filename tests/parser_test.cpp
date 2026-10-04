@@ -4,19 +4,60 @@
 
 #include "parser.hpp"
 
-int main()
-{   
-    std::string input = "ls -la /home";
-
+bool test_case(
+    const std::string& name,
+    const std::string& input,
+    const std::vector<std::string>& expected
+)
+{
     std::vector<std::string> actual = tokenize(input);
-    std::vector<std::string> expected = {"ls", "-la", "/home"};
 
-    if ( actual == expected)
+    if (actual == expected)
     {
-        std::cout << "[PASS]\n";
+        std::cout << "[PASS] " << name << '\n';
+        return true;
     }
-    else
-    {
-        std::cout << "[FAIL]\n";
-    }
+
+    std::cout << "[FAIL] " << name << '\n';
+    return false;
+
+}
+
+int main()
+{
+    bool all_passed = true;
+
+    // test_case(name, input, expected)
+
+    all_passed &= test_case(
+        "empty input",
+        "",
+        std::vector<std::string>{}
+    );
+
+    all_passed &= test_case(
+        "whitespace only",
+        " ",
+        std::vector<std::string>{}
+    );
+
+    all_passed &= test_case(
+        "single command",
+        "ls",
+        std::vector<std::string>{"ls"}
+    );
+
+    all_passed &= test_case(
+        "one argument",
+        "ls -l",
+        std::vector<std::string>{"ls", "-l"}
+    );
+
+    all_passed &= test_case(
+        "multiple arguments",
+        "ls -la /home",
+        std::vector<std::string>{"ls", "-la", "/home"}
+    );
+
+    return all_passed ? 0 : 1;
 }

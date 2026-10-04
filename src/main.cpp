@@ -12,7 +12,7 @@ int main()
 {
     bool logo = false;
 
-    if (logo == true){
+    if(logo == true){
     std::cout << R"(
          : :::    :::  ::::::::  :::    :::
         :+:+:   :+: :+:    :+: :+:    :+:
@@ -27,7 +27,7 @@ int main()
     std::cout << '\n';
     std::string input;
 
-    while (true)
+    while(true)
     {   
         std::cout << "nsh> ";
         std::getline(std::cin, input);
@@ -41,13 +41,13 @@ int main()
             break;
         }
 
-        if (args[0] == "cd")
+        if(args[0] == "cd")
         {
-            if (args.size() == 1)
+            if(args.size() == 1)
             {
                 continue;
             }
-            else if (args.size() > 2){
+            else if(args.size() > 2){
 
                 continue;
             }
@@ -57,7 +57,7 @@ int main()
                 
                 int result = chdir(dir.c_str());
 
-                if (result == 0)
+                if(result == 0)
                 {
                     // TODO: update path in nsh>
                     continue;
