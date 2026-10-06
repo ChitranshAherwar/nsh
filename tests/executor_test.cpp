@@ -1,30 +1,60 @@
 #include <iostream>
 
-#include <executor.hpp>
+#include "executor.hpp"
 
 int main()
 {
-    int result = execute({"true"});
+    ParsedCommand command;
+    int result;
+
+    command.args = {"ls"};
+    result = execute(command);
 
     if(result == 0)
-        std::cout << "[PASS] true exits with: " << result << '\n';
+    {
+        std::cout << "[PASS] single argument.\n";
+    }
     else
-        std::cout << "[FAIL] true exits with: " << result << '\n';
+    {
+        std::cout << "[FAIL] single argument.\n";
+    }
 
-    result = execute({"false"});
-    
+    command.args = {"ls", "-la"};
+    result = execute(command);
 
-    if(result == 1)
-        std::cout << "[PASS] false exits with: " << result << '\n';
+    if(result == 0)
+    {
+        std::cout << "[PASS] multiple arguments.\n";
+    }
     else
-        std::cout << "[FAIL] false exits with: " << result << '\n';
+    {
+        std::cout << "[FAIL] multiple arguments.\n";
+    }
 
-    
-    result = execute({"real_command_trust_me"});
-    
+    command.args = {"nsh"};
+    result = execute(command);
 
-    if(result == 1)
-        std::cout << "[PASS] unknown command exits with: " << result << '\n';
+    if(result != 0)
+    {
+        std::cout << "[PASS] unknown command.\n";
+    }
     else
-        std::cout << "[FAIL] unknown command exits with: " << result << '\n';
+    {
+        std::cout << "[FAIL] unknown command.\n";
+    }
+
+    command.args = {"echo", "hello"};
+    command.redirection = RedirectionType::Output;
+    command.file = "/some/path/file.txt";
+
+    result = execute(command);
+
+    if(result != 0)
+    {
+        std::cout << "[PASS] invalid output path\n";
+    }
+    else
+    {
+        std::cout << "[FAIL] invalid output path\n";
+    }
 }

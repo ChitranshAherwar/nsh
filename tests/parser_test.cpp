@@ -10,9 +10,9 @@ bool test_case(
     const std::vector<std::string>& expected
 )
 {
-    std::vector<std::string> actual = tokenize(input);
+    ParsedCommand actual = tokenize(input);
 
-    if (actual == expected)
+    if (actual.args == expected)
     {
         std::cout << "[PASS] " << name << '\n';
         return true;
@@ -58,6 +58,21 @@ int main()
         "ls -la /home",
         std::vector<std::string>{"ls", "-la", "/home"}
     );
+
+    ParsedCommand actual = tokenize("echo hello > output.txt");
+
+    if(
+        actual.args == std::vector<std::string>{"echo", "hello"} &&
+        actual.redirection == RedirectionType::Output &&
+        actual.file == "output.txt")
+    {
+        std::cout << "[PASS] output redirection syntax\n";
+    }
+    else
+    {
+        std::cout << "[FAIL] output redirection syntax\n";
+        all_passed = false;
+    }
 
     return all_passed ? 0 : 1;
 }

@@ -32,28 +32,31 @@ int main()
         std::cout << "nsh> ";
         std::getline(std::cin, input);
 
-        std::vector<std::string> args = tokenize(input);
+        ParsedCommand command = tokenize(input);
 
-        if(args.empty())
+        if(!command.valid)
         continue;
 
-        if(args[0] == "exit"){
+        if(command.args.empty())
+        continue;
+
+        if(command.args[0] == "exit"){
             break;
         }
 
-        if(args[0] == "cd")
+        if(command.args[0] == "cd")
         {
-            if(args.size() == 1)
+            if(command.args.size() == 1)
             {
                 continue;
             }
-            else if(args.size() > 2){
+            else if(command.args.size() > 2){
 
                 continue;
             }
             else{
 
-                std::string dir = args[1];
+                std::string dir = command.args[1];
                 
                 int result = chdir(dir.c_str());
 
@@ -70,7 +73,7 @@ int main()
 
         }
 
-        execute(args);
+        execute(command);
      
         std::cout << '\n';
 
