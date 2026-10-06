@@ -12,12 +12,16 @@ Output:
 ["ls", "-la", "/home"]
 
 ## Current behavior
+- Parses command into `ParsedCommand`
 - Splits on spaces
 - Ignores consecutive spaces
 - Ignores leading/trailing spaces
-- Returns vector<string>
+- Stores command arguments
+- Detects `>`
+- Stores the redirection target file
+- Rejects invalid redirection syntax
 
 ## Current limitations
 - No quoted arguments yet
 - No escaping yet
-- No operators yet
+- No other operators

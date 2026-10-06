@@ -26,3 +26,9 @@ The parent checks the child's termination status using:
 If `execvp()` fails, the child reports the error and terminates using `_exit()`.
 
 This allows the parent to receive the failure status.
+
+# Redirection
+- Opens/Creates the target file
+- Redirects `stdout` to that file with `dup2()`
+- Closes the file descriptor.
+- Executes the command.
