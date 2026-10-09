@@ -15,6 +15,7 @@ add_executable(nsh
     src/main.cpp
     src/parser.cpp
     src/executor.cpp
+    src/builtins/cd.cpp
 )
 
 add_executable(parser_test
@@ -28,12 +29,21 @@ add_executable(executor_test
 
 )
 
+add_executable(cd_test
+    tests/cd_test.cpp
+    src/builtins/cd.cpp
+)
+
 target_include_directories(executor_test PRIVATE
-    include 
+    include
 
 )
 
 target_include_directories(parser_test PRIVATE
+    include
+)
+
+target_include_directories(cd_test PRIVATE
     include
 )
 
@@ -44,3 +54,4 @@ target_include_directories(nsh PRIVATE
 
 add_test(NAME parser_test COMMAND parser_test)
 add_test(NAME executor_test COMMAND executor_test)
+add_test(NAME cd_test COMMAND cd_test)

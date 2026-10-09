@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "executor.hpp"
 
@@ -31,7 +32,7 @@ int main()
         std::cout << "[FAIL] multiple arguments.\n";
     }
 
-    command.args = {"nsh"};
+    command.args = {"fih"};
     result = execute(command);
 
     if(result != 0)
@@ -43,18 +44,49 @@ int main()
         std::cout << "[FAIL] unknown command.\n";
     }
 
+    command = ParsedCommand{};
+
     command.args = {"echo", "hello"};
     command.redirection = RedirectionType::Output;
-    command.file = "/some/path/file.txt";
+    command.file = "output.txt";
 
     result = execute(command);
 
-    if(result != 0)
+    if(result == 0)
     {
-        std::cout << "[PASS] invalid output path\n";
+        std::ifstream myFile("output.txt", std::ios::in);
+
+        if(myFile.is_open())
+        {
+            std::string line;
+            myFile >> line;
+
+            if(line == "hello")
+            {
+                std::cout << "[PASS] echo\n";
+            }
+            else
+            {
+                std::cout << "[FAIL] echo\n";
+            }
+        }
+        else
+        {
+            std::cout << "[FAIL] echo\n";
+        }
+        myFile.close();
     }
     else
     {
-        std::cout << "[FAIL] invalid output path\n";
+        std::cout << "[FAIL] echo\n";
+    }
+
+    if(std::remove("output.txt") == 0)
+    {
+        std::cout << "File 'output.txt' deleted successfully.\n";
+    }
+    else
+    {
+        std::cout << "Error deleting file.\n";
     }
 }
